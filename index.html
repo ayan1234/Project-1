@@ -3,202 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SylvanGuard | Enterprise Conservation</title>
+    <title>SylvanGuard | Global Forest Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
-        body { font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
-        .parallax { background-attachment: fixed; background-position: center; background-size: cover; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); }
-        .hover-lift { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .hover-lift:hover { transform: translateY(-10px); }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #22c55e; border-radius: 10px; }
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;700;900&display=swap');
+        body { font-family: 'Outfit', sans-serif; background-color: #020617; color: #cbd5e1; overflow-x: hidden; }
+        .parallax-bg { background-attachment: fixed; background-position: center; background-size: cover; }
+        .text-gradient { background: linear-gradient(to right, #10b981, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .img-pan { animation: pan 20s infinite alternate; }
+        @keyframes pan { from { transform: scale(1); } to { transform: scale(1.15); } }
+        .custom-cursor { cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" ay="10" r="5" fill="%2310b981"/></svg>'), auto; }
     </style>
 </head>
-<body class="bg-[#020617] text-slate-300 custom-scrollbar" x-data="{ openProfile: false, activeTab: 'all' }">
+<body x-data="{ openProfile: false, showVideo: false }">
 
-    <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center bg-slate-950/50 backdrop-blur-xl border-b border-white/5">
-        <div class="flex items-center gap-8">
-            <div class="text-2xl font-black text-white flex items-center gap-2">
-                <span class="bg-green-500 w-8 h-8 rounded-lg flex items-center justify-center italic text-slate-900 text-lg">S</span>
-                SYLVAN<span class="text-green-500">GUARD</span>
-            </div>
-            <div class="hidden lg:flex gap-6 text-sm font-medium uppercase tracking-widest text-slate-400">
-                <a href="#mission" class="hover:text-green-400 transition">Mission</a>
-                <a href="#map" class="hover:text-green-400 transition">Global Map</a>
-                <a href="#metrics" class="hover:text-green-400 transition">Live Data</a>
+    <nav class="fixed w-full z-[100] px-10 py-8 flex justify-between items-center bg-gradient-to-b from-slate-950/80 to-transparent">
+        <div class="flex items-center gap-12">
+            <h1 class="text-3xl font-black tracking-tighter text-white">SYLVAN<span class="text-green-500">GUARD</span></h1>
+            <div class="hidden xl:flex gap-8 text-[10px] uppercase tracking-[0.4em] font-bold text-slate-500">
+                <a href="#visuals" class="hover:text-white transition">Media</a>
+                <a href="#tech" class="hover:text-white transition">Technology</a>
+                <a href="#impact" class="hover:text-white transition">Global Stats</a>
+                <a href="#founder" @click.prevent="openProfile = true" class="hover:text-green-400 transition cursor-pointer">Founder</a>
             </div>
         </div>
-        <div class="flex items-center gap-4">
-            <button @click="openProfile = true" class="px-5 py-2 text-sm font-semibold text-white/80 hover:text-white transition">About Founder</button>
-            <a href="#donate" class="bg-green-600 hover:bg-green-500 text-white px-6 py-2.5 rounded-full font-bold transition shadow-[0_0_20px_rgba(34,197,94,0.3)]">
-                Launch Initiative
-            </a>
-        </div>
+        <button class="bg-white text-black px-8 py-3 rounded-full font-bold text-sm hover:bg-green-500 hover:text-white transition-all transform hover:scale-110 shadow-2xl">
+            PARTNER WITH US
+        </button>
     </nav>
 
-    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <section class="relative h-[110vh] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=1920&q=80" 
-                 class="w-full h-full object-cover opacity-40 scale-110 animate-[pulse_10s_infinite]" alt="Forest canopy">
-            <div class="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-slate-950 to-[#020617]"></div>
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=80" 
+                 class="w-full h-full object-cover brightness-50 img-pan" alt="Majestic Mountains">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/50"></div>
         </div>
 
-        <div class="relative z-10 container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-bold uppercase tracking-tighter mb-6">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                    </span>
-                    Live Conservation Status: Active
-                </div>
-                <h1 class="text-7xl lg:text-8xl font-black text-white leading-none mb-8">
-                    HEAL THE <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">HORIZON.</span>
-                </h1>
-                <p class="text-xl text-slate-400 max-w-xl leading-relaxed mb-10">
-                    We deploy AI-driven reforestation and drone-based seeding to restore mountain ecosystems. Join the largest decentralized forest conservation project in the world.
-                </p>
-                <div class="flex gap-4">
-                    <button class="px-8 py-4 bg-white text-slate-950 font-black rounded-xl hover:bg-green-400 transition">GET STARTED</button>
-                    <button class="px-8 py-4 border border-white/10 glass-card text-white font-bold rounded-xl hover:bg-white/5 transition">WATCH DOCUMENTARY</button>
-                </div>
+        <div class="relative z-10 text-center space-y-8 max-w-5xl px-6">
+            <h2 class="text-green-400 font-black tracking-[0.5em] text-xs uppercase animate-pulse">Establishing Ecological Equilibrium</h2>
+            <h1 class="text-7xl md:text-9xl font-black text-white leading-none tracking-tighter">
+                THE EARTH <br><span class="text-gradient italic font-light">REIMAGINED.</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-slate-400 font-light max-w-3xl mx-auto leading-relaxed">
+                By 2026, we have deployed $1,200$ autonomous seeding drones across the Andes and the Himalayas. This is the new age of conservation.
+            </p>
+            <div class="flex flex-col md:flex-row gap-6 justify-center items-center pt-8">
+                <a href="#visuals" class="px-12 py-5 bg-green-600 text-white font-bold rounded-2xl hover:bg-green-500 shadow-xl transition-all">VIEW GALLERY</a>
+                <span class="text-slate-600 font-bold">OR</span>
+                <button @click="showVideo = true" class="flex items-center gap-4 text-white hover:text-green-400 transition group">
+                    <span class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center group-hover:scale-110 transition"><i class="fas fa-play"></i></span>
+                    <span class="font-bold tracking-widest text-sm">MISSION REEL</span>
+                </button>
             </div>
-            
-            <div class="glass-card p-8 rounded-[2.5rem] border-white/10 hidden lg:block">
-                <div class="flex justify-between items-end mb-8">
-                    <div>
-                        <h4 class="text-white font-bold text-lg">Daily Seeding Rate</h4>
-                        <p class="text-slate-500 text-sm italic">Updates every 60s</p>
+        </div>
+    </section>
+
+    <section id="visuals" class="py-32 bg-slate-950">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-[1000px]">
+                <div class="md:col-span-8 relative overflow-hidden rounded-[3rem] group">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000" alt="Deep Forest">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500"></div>
+                    <div class="absolute bottom-10 left-10 text-white">
+                        <h3 class="text-3xl font-bold">The Silent Giants</h3>
+                        <p class="text-slate-300">Old-growth protection in the Pacific Northwest.</p>
                     </div>
-                    <div class="text-green-400 font-black text-3xl">+$12,402.00$</div>
                 </div>
-                <div class="space-y-6">
-                    <template x-for="stat in [
-                        { label: 'Hectares Restored', val: '84,209', color: 'bg-green-500', pct: '84%' },
-                        { label: 'Wildlife Re-entry', val: '12,400+', color: 'bg-blue-500', pct: '62%' },
-                        { label: 'Carbon Captured', val: '1.2M Tons', color: 'bg-emerald-500', pct: '91%' }
-                    ]">
-                        <div>
-                            <div class="flex justify-between text-xs font-bold uppercase mb-2 tracking-widest text-slate-400">
-                                <span x-text="stat.label"></span>
-                                <span x-text="stat.val"></span>
-                            </div>
-                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                                <div :class="stat.color" class="h-full rounded-full" :style="`width: ${stat.pct}`"></div>
-                            </div>
-                        </div>
-                    </template>
+                <div class="md:col-span-4 relative overflow-hidden rounded-[3rem] group">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000" alt="Mountain Lake">
+                    <div class="absolute inset-0 bg-blue-900/20 group-hover:bg-transparent transition duration-500"></div>
+                </div>
+                <div class="md:col-span-4 relative overflow-hidden rounded-[3rem] group">
+                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000" alt="Misty Hills">
+                </div>
+                <div class="md:col-span-8 relative overflow-hidden rounded-[3rem] group">
+                    <img src="https://images.unsplash.com/photo-1501854140801-50d01674aa3e?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000" alt="Landscape">
+                    <div class="absolute bottom-10 left-10 text-white">
+                        <h4 class="text-xl font-bold italic">"Landscape is the memory of the earth."</h4>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="metrics" class="py-32 container mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div class="max-w-xl">
-                <h2 class="text-4xl font-bold text-white mb-4 italic">Global Reach. Local Impact.</h2>
-                <p class="text-slate-500">Click a region to see specific conservation goals and mountain restoration photos.</p>
-            </div>
-            <div class="flex bg-slate-900/50 p-1.5 rounded-2xl border border-white/5">
-                <button @click="activeTab = 'all'" :class="activeTab === 'all' ? 'bg-green-600 text-white shadow-lg' : 'text-slate-400'" class="px-6 py-2 rounded-xl text-sm font-bold transition">All Regions</button>
-                <button @click="activeTab = 'asia'" :class="activeTab === 'asia' ? 'bg-green-600 text-white shadow-lg' : 'text-slate-400'" class="px-6 py-2 rounded-xl text-sm font-bold transition">Asia</button>
-                <button @click="activeTab = 'americas'" :class="activeTab === 'americas' ? 'bg-green-600 text-white shadow-lg' : 'text-slate-400'" class="px-6 py-2 rounded-xl text-sm font-bold transition">Americas</button>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="hover-lift group relative h-[500px] rounded-[2rem] overflow-hidden border border-white/5" x-show="activeTab === 'all' || activeTab === 'asia'">
-                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Mountain">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent p-8 flex flex-col justify-end">
-                    <span class="text-green-400 font-bold text-xs uppercase tracking-widest mb-2 italic">Himalayan Corridor</span>
-                    <h3 class="text-2xl font-black text-white mb-4">The Khumbu Reforest</h3>
-                    <div class="flex items-center gap-4 text-sm text-slate-300">
-                        <span><i class="fas fa-mountain mr-2"></i> 4,500m</span>
-                        <span><i class="fas fa-temperature-low mr-2"></i> -12°C</span>
+    <section id="tech" class="py-32 bg-slate-900 relative">
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-10">
+                <h2 class="text-5xl font-black text-white italic">Technical Superiority.</h2>
+                <div class="space-y-6">
+                    <div class="glass p-8 rounded-3xl">
+                        <div class="flex gap-6 items-center">
+                            <div class="text-4xl text-green-500 font-black">01</div>
+                            <p class="text-slate-300 font-light text-lg">Hyper-spectral imaging identifies specific soil mineral deficiencies before seeding.</p>
+                        </div>
+                    </div>
+                    <div class="glass p-8 rounded-3xl">
+                        <div class="flex gap-6 items-center">
+                            <div class="text-4xl text-blue-500 font-black">02</div>
+                            <p class="text-slate-300 font-light text-lg">Seeding at a rate of $200,000$ pods per day per drone swarm.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="hover-lift group relative h-[500px] rounded-[2rem] overflow-hidden border border-white/5" x-show="activeTab === 'all' || activeTab === 'americas'">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Andes">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent p-8 flex flex-col justify-end">
-                    <span class="text-green-400 font-bold text-xs uppercase tracking-widest mb-2 italic">Andean Cloud Forest</span>
-                    <h3 class="text-2xl font-black text-white mb-4">Patagonia Reserve</h3>
-                    <div class="flex items-center gap-4 text-sm text-slate-300">
-                        <span><i class="fas fa-mountain mr-2"></i> 2,100m</span>
-                        <span><i class="fas fa-tree mr-2"></i> 2.4M Saplings</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-card p-10 rounded-[2.5rem] flex flex-col justify-center items-center text-center">
-                <div class="w-20 h-20 rounded-full bg-green-500/10 flex items-center justify-center mb-6">
-                    <i class="fas fa-plus text-3xl text-green-500"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white mb-2">Fund a New Peak</h3>
-                <p class="text-slate-500 mb-8 text-sm leading-relaxed">Select a mountain range currently under threat and sponsor a 50-year restoration lease.</p>
-                <button class="w-full py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition uppercase tracking-widest text-xs">Explore Map</button>
+            <div class="relative">
+                <div class="absolute -inset-10 bg-green-500/20 blur-[100px] rounded-full"></div>
+                <img src="https://images.unsplash.com/photo-1579829366248-204fe8413f31?auto=format&fit=crop&w=800&q=80" class="relative z-10 rounded-[4rem] shadow-2xl border border-white/10" alt="Drone Tech">
             </div>
         </div>
     </section>
 
     <div 
         x-show="openProfile" 
-        class="fixed inset-0 z-[100] flex items-center justify-end p-0 md:p-6"
-        x-transition:enter="transition ease-out duration-500"
-        x-transition:enter-start="opacity-0 translate-x-full"
-        x-transition:enter-end="opacity-100 translate-x-0"
-        x-transition:leave="transition ease-in duration-400"
-        x-transition:leave-start="opacity-100 translate-x-0"
-        x-transition:leave-end="opacity-0 translate-x-full"
+        class="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-slate-950/95 backdrop-blur-2xl"
+        x-transition:enter="transition duration-500"
+        x-transition:enter-start="opacity-0 scale-110"
+        x-transition:enter-end="opacity-100 scale-100"
         style="display: none;"
     >
-        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-3xl" @click="openProfile = false"></div>
-        <div class="relative bg-slate-900 h-full w-full md:w-[600px] md:rounded-[3rem] shadow-2xl border-l border-white/10 flex flex-col overflow-hidden">
-            <button @click="openProfile = false" class="absolute top-10 right-10 z-10 w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white transition">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <div class="flex-1 overflow-y-auto custom-scrollbar p-12 md:p-20">
-                <div class="relative inline-block mb-10">
-                    <img src="https://i.pravatar.cc/300?u=yourname" class="w-32 h-32 rounded-3xl object-cover grayscale hover:grayscale-0 transition duration-500" alt="Founder">
-                    <div class="absolute -bottom-2 -right-2 bg-green-500 text-slate-950 w-10 h-10 rounded-xl flex items-center justify-center font-black">26</div>
+        <div class="max-w-6xl w-full grid lg:grid-cols-2 gap-20 items-center">
+            <div class="relative h-[600px] hidden lg:block">
+                <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover rounded-[4rem]" alt="Founder Context">
+                <div class="absolute inset-0 bg-green-600/20 mix-blend-overlay rounded-[4rem]"></div>
+            </div>
+            <div class="space-y-8">
+                <div class="flex justify-between items-start">
+                    <h2 class="text-7xl font-black text-white leading-none">THE <br>FOUNDER.</h2>
+                    <button @click="openProfile = false" class="text-slate-500 hover:text-white text-3xl"><i class="fas fa-times"></i></button>
                 </div>
-                
-                <h2 class="text-5xl font-black text-white mb-2">I'm [Your Name]</h2>
-                <p class="text-green-400 font-bold uppercase tracking-[0.3em] text-xs mb-10 italic">Founder & Environmental Architect</p>
-                
-                <div class="space-y-8 text-slate-400 leading-relaxed text-lg font-light">
-                    <p>I built <span class="text-white font-semibold">SylvanGuard</span> because I believe technology is the only tool fast enough to outpace climate change. By merging blockchain transparency with automated reforestation, we've created a system where every dollar is tracked to a specific seed.</p>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="p-6 bg-slate-950 rounded-3xl border border-white/5">
-                            <h5 class="text-white font-bold mb-1">12+</h5>
-                            <p class="text-xs uppercase font-bold text-slate-600">Patents Filed</p>
-                        </div>
-                        <div class="p-6 bg-slate-950 rounded-3xl border border-white/5">
-                            <h5 class="text-white font-bold mb-1">200k</h5>
-                            <p class="text-xs uppercase font-bold text-slate-600">Hours Coding</p>
-                        </div>
-                    </div>
-
-                    <p>My goal is to restore 1 million hectares by 2030. This isn't just a website; it's a living interface for the planet's recovery. Join me on this journey.</p>
+                <p class="text-2xl text-green-400 font-bold italic tracking-tighter">[Your Name Here]</p>
+                <div class="space-y-6 text-slate-400 text-lg leading-relaxed">
+                    <p>My journey began in the high-altitude forests of the Himalayas. I realized that humans alone cannot plant fast enough to stop the desertification of our mountain ranges. </p>
+                    <p>I founded <span class="text-white font-bold">SylvanGuard</span> to be the bridge between silicon and soil. We are currently managing over $5.4$ million hectares of diverse forest life.</p>
                 </div>
-
-                <div class="mt-16 flex items-center gap-6">
-                    <a href="#" class="text-white text-2xl hover:text-green-500 transition"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-white text-2xl hover:text-green-500 transition"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="text-white text-2xl hover:text-green-500 transition"><i class="fab fa-github"></i></a>
-                    <div class="h-[1px] flex-1 bg-white/10"></div>
+                <div class="flex gap-6">
+                    <a href="#" class="text-3xl text-white hover:text-green-500"><i class="fab fa-github"></i></a>
+                    <a href="#" class="text-3xl text-white hover:text-green-500"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-3xl text-white hover:text-green-500"><i class="fas fa-globe"></i></a>
                 </div>
             </div>
         </div>
     </div>
+
+    <footer class="py-20 border-t border-white/5 bg-slate-950">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-4xl font-black text-white mb-10">SYLVAN<span class="text-green-500">GUARD</span></div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-10 text-xs font-bold tracking-[0.3em] uppercase text-slate-600 mb-20">
+                <a href="#" class="hover:text-white transition">Satellite Data</a>
+                <a href="#" class="hover:text-white transition">Drone Swarms</a>
+                <a href="#" class="hover:text-white transition">Eco-Tokens</a>
+                <a href="#" class="hover:text-white transition">Bio-Security</a>
+            </div>
+            <p class="text-slate-800 font-bold">&copy; 2026 GLOBAL REFORESTATION PROTOCOL. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
